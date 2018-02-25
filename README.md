@@ -10,7 +10,9 @@ In sys.path in Distance.py file, indicate path of the IRMSD diectory
 ## COMPUTING RMSD WITH HADOOP
 
 Transform the input file `aladip_implicit.txt` with `add_key.py`. This script adds a key for each conformation.
+
 Then add the input file `aladip_implicit_nbr.txt` to hdfs with `hdfs dfs -put`
+
 Launch the firt job : 
 `hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.0.0.jar -mapper "python /home/louis/Documents/Data_science/GMDA/job1_mapper.py" -reducer "python /home/louis/Documents/Data_science/GMDA/job1_reducer.py" -input "veillon_l/aladip_implicit_nbr.txt" -output "veillon_l/output"`
 

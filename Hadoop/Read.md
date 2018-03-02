@@ -15,13 +15,9 @@ This first job take one atom as input `key x y z` and provide one conformation a
 
 ### INPUT FILE JOB 2.
 
-As the reducing script sorts the output, we have to shuffle the output if we want to select only `m` of them.
-Use the script `shuffling.py` in order to create `b` bash and choose with`m` sample from the output file of job 1. 
+As the reducing script sorts the output, we have to shuffle the output.
+Use the script `shuffling.py` .
 
-Example:
-```python shuffling.py b m```
-
-Here we have chosen `m = 100 000` conformation and the time cost is 2 hours for the next job. For `m = 200 000` conformation, the time cost is 8 hours.
 
 ### RUNNING JOB 2.
 
@@ -29,9 +25,21 @@ then we compute the second job:
 
 `hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.0.0.jar -mapper "python /home/louis/Documents/Data_science/GMDA/job2_mapper.py 15000 100000 matrix" -reducer "python /home/louis/Documents/Data_science/GMDA/job2_reducer.py" -input "veillon_l/output/part-00000" -output "veillon_l/output1"`
 
-In `job2_mapper.py`, you can changing `k` which is the number of nearest distance you keep in the output, `m` the number of sample in the input file of job 2 and the format of the output of job 2 `matrix` or `dictionnary`.
+In `job2_mapper.py`, you can changing `k` which is the number of distance you keep in the output, `m` the number of sample in the input file of job 2 and the format of the output of job 2 `matrix` or `dictionnary`.
 
 Example:
 ```job2_mapper.py 15000 100000 matrix```
 
-This second job takes as input `key [x1 y1 z1],[x2 y2 z2],...,[x10 y10 z10]` and provides as output `key 1 { key 2 : rmsd(confo 1, conf 2), key 18 : rmsd(confo 1, confo 18), ... , key 1586, rmsd(confo 1, confo 1589)}` with `k` nearest distance.
+This second job takes as input `key [x1 y1 z1],[x2 y2 z2],...,[x10 y10 z10]` and provides as output either:
+
+```key 1 { key 2 : rmsd(confo 1, conf 2), key 18 : rmsd(confo 1, confo 18), ... , key 1586, rmsd(confo 1, confo 1589)}``` 
+
+or 
+
+```key 1, rmsd(confo 1, conf 2) rmsd(confo 1, confo 18) ...  rmsd(confo 1, confo 1589)
+...
+key 50, rmsd(confo 50, conf 2) rmsd(confo 50, confo 18) ...  rmsd(confo 50, confo 1589)
+``` 
+
+
+

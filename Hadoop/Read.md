@@ -38,8 +38,7 @@ This second job takes as input `key [x1 y1 z1],[x2 y2 z2],...,[x10 y10 z10]` and
 
 or 
 
-```[[key 1, rmsd(confo 1, conf 2) rmsd(confo 1, confo 18) ...  rmsd(confo 1, confo 1589)],...,[key 50, rmsd(confo 50, conf 2) rmsd(confo 50, confo 18) ...  rmsd(confo 50, confo 1589)]]````
-
+```[[key 1, rmsd(confo 1, conf 2) rmsd(confo 1, confo 18) ...  rmsd(confo 1, confo 1589)],...,[key 50, rmsd(confo 50, conf 2) rmsd(confo 50, confo 18) ...  rmsd(confo 50, confo 1589)]]```
 
 
 

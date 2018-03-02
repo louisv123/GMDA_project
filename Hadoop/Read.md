@@ -1,5 +1,7 @@
 ## COMPUTING RMSD WITH HADOOP
 
+This script uses hadoop distributed file system
+
 ### INPUT FILE OF JOB 1.
 
 Transform the input file `aladip_implicit.txt` with `add_key.py`. This script adds a key for each conformation.
